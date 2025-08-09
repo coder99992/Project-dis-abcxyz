@@ -35,8 +35,19 @@ const { deployCommands } = require('./utils/deployCommands');
         }
 
         if (interaction.isStringSelectMenu()) {
-            if (interaction.customId === 'my_menu') {
-                await interaction.reply(`✅ Bạn đã chọn: **${interaction.values[0]}**`);
+            if (interaction.customId === 'command_menu') {
+                const selectedCommandName = interaction.values[0];
+                const command = client.commands.get(selectedCommandName);
+                if (!command) {
+                    await interaction.reply({ content: `❌ Lệnh **${selectedCommandName}** không tồn tại!`, ephemeral: true });
+                    return;
+                }
+                try {
+                    await command.execute(interaction);
+                } catch (error) {
+                    console.error(error);
+                    await interaction.reply({ content: `❌ Lỗi khi thực thi lệnh **${selectedCommandName}**!`, ephemeral: true });
+                }
             }
         }
     });
