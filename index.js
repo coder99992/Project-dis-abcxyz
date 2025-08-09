@@ -25,4 +25,4 @@ client.on('messageCreate', (message) => {
 });
 
 // Đăng nhập bot với token trực tiếp
-client.login('1237ab3adc96c05d6b72e29d71b159291675eaebb90991fe69f2cd552ea562a0');
+client.login(process.env.DISCORD_TOKEN)
