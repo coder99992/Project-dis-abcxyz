@@ -1,0 +1,13 @@
+{
+  "name": "discord-bot-demo",
+  "version": "1.0.0",
+  "description": "Demo Discord Bot deploy trên Litegix",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5"
+  }
+}
