@@ -1,31 +1,28 @@
 // file: index.js
-require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 
-// Khởi tạo bot với quyền đọc tin nhắn & gửi tin nhắn
+// Khởi tạo bot
 const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds,            // Quản lý server
-        GatewayIntentBits.GuildMessages,     // Đọc tin nhắn
-        GatewayIntentBits.MessageContent     // Lấy nội dung tin nhắn
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
     ]
 });
 
-// Sự kiện khi bot sẵn sàng
+// Sự kiện bot sẵn sàng
 client.once('ready', () => {
     console.log(`✅ Bot đã đăng nhập với tên: ${client.user.tag}`);
 });
 
-// Sự kiện khi có tin nhắn mới
+// Sự kiện nhận tin nhắn
 client.on('messageCreate', (message) => {
-    // Bỏ qua tin nhắn của bot
     if (message.author.bot) return;
 
-    // Trả lời khi có từ khoá "ping"
     if (message.content.toLowerCase() === 'ping') {
         message.reply('🏓 Pong!');
     }
 });
 
-// Đăng nhập bot bằng token
-client.login(process.env.DISCORD_TOKEN);
+// Đăng nhập bot với token trực tiếp
+client.login('1237ab3adc96c05d6b72e29d71b159291675eaebb90991fe69f2cd552ea562a0');
