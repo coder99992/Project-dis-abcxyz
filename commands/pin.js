@@ -1,16 +1,16 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require(\'discord.js\');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName(\'pin\')
-        .setDescription(\'Ghim một tin nhắn trong kênh.\')
+        .setName('pin')
+        .setDescription('Ghim một tin nhắn trong kênh.')
         .addStringOption(option =>
-            option.setName(\'message_id\')
-                .setDescription(\'ID của tin nhắn cần ghim\')
+            option.setName('message_id')
+                .setDescription('ID của tin nhắn cần ghim')
                 .setRequired(true))
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
     async execute(interaction) {
-        const messageId = interaction.options.getString(\'message_id\');
+        const messageId = interaction.options.getString('message_id');
 
         try {
             const message = await interaction.channel.messages.fetch(messageId);
@@ -22,7 +22,9 @@ module.exports = {
             }
         } catch (error) {
             console.error(`Lỗi khi ghim tin nhắn: ${error}`);
-            await interaction.reply({ content: \'Đã xảy ra lỗi khi cố gắng ghim tin nhắn. Vui lòng kiểm tra lại ID tin nhắn và quyền của bot.\', ephemeral: true });
+            await interaction.reply({ content: 'Đã xảy ra lỗi khi cố gắng ghim tin nhắn. Vui lòng kiểm tra lại ID tin nhắn và quyền của bot.', ephemeral: true });
         }
     },
 };
+
+
