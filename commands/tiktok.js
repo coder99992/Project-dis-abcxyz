@@ -5,8 +5,8 @@ const fs = require("fs");
 
 async function downloadTikTokVideo(tiktokUrl) {
   try {
-    const response = await axios.get(`https://api.douyin.wtf/api?url=${tiktokUrl}&hd=1`);
-    const videoUrl = response.data.nwm_video_url;
+    const response = await axios.get(`https://www.tikwm.com/api/?url=${tiktokUrl}`);
+    const videoUrl = response.data.play;
     if (!videoUrl) {
       throw new Error("Could not get video URL from TikTok API.");
     }
